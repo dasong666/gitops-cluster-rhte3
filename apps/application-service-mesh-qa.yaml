@@ -1,0 +1,16 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: service-mesh-qa
+  namespace: openshift-gitops
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-system
+  project: default
+  source:
+    path: servicemesh/instance/overlays/qa
+    repoURL: https://github.com/RHC-STP-OSSM/cluster-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}

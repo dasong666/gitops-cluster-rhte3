@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: argo-rollouts
+  namespace: openshift-gitops
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: argo-rollouts
+    repoURL: https://github.com/RHC-STP-OSSM/cluster-gitops
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
