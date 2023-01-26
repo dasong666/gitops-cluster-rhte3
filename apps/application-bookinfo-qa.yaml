@@ -1,0 +1,17 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: bookinfo-qa
+  namespace: openshift-gitops
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: envs/qa
+    repoURL: https://github.com/RHC-STP-OSSM/gitops-app-bookinfo.git
+    targetRevision: HEAD
+    directory:
+      recurse: false
+  syncPolicy:
+    automated: {}
