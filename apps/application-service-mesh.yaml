@@ -1,0 +1,15 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: service-mesh
+  namespace: openshift-gitops
+spec:
+  destination:
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    path: servicemesh/overlays/default
+    repoURL: $REPO_URL
+    targetRevision: HEAD
+  syncPolicy:
+    automated: {}
